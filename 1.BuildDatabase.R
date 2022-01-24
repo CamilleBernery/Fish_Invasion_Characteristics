@@ -40,17 +40,17 @@ intro$From<-as.factor(intro$From)
 intro$TO<-as.factor(intro$TO)
 intro$Species<-as.factor(intro$Species)
 
-levels(intro$From)[levels(intro$From)=="|Unknown"]<-"Unknown"##Rassembler les categories avec le même nom mais des fautes de frappe
+levels(intro$From)[levels(intro$From)=="|Unknown"]<-"Unknown"##gather categories with mistakes
 levels(intro$From)[levels(intro$From)=="unknown"]<-"Unknown"
 levels(intro$From)[levels(intro$From)=="Uknown"]<-"Unknown"
 levels(intro$TO)[levels(intro$TO)=="to be filled"]<-"Unknown"
 
 
 #create a "yes/no column for the introduction step
-introyes<-intro%>% filter(!is.na(TO))##==esp?ce introduites
+introyes<-intro%>% filter(!is.na(TO))##==not introduced species
 introyes$Introduced<-"Yes"
 
-introno<-intro%>% filter(is.na(TO))##==esp?ce pas introduites
+introno<-intro%>% filter(is.na(TO))##==introduced species
 introno$Introduced<-"No"
 
 intro<-rbind(introyes, introno)
@@ -66,8 +66,7 @@ levels(intro$EcolEff)<-c("Unknown","No","No","Yes","Yes","Unknown","Unknown","Ye
 intro$SocioEff<-as.factor(intro$SocioEff)
 levels(intro$SocioEff)<-c("Unknown","No","No","Yes","Yes","Unknown","Unknown")
 
-#####cleaning step
-
+#####Cleaning data####
 
 #Establishment step-------------------#
 #cleaning data - if not introduced, thus not established
@@ -116,7 +115,7 @@ match(spbl, no.na.data$Species)
 
 intro$match.impsocio_esta<-intro[,"SocioEff"]=="Yes" & intro[,"Estabwild"]=="No"
 
-#transform NA pour passer dans le if
+#transform NA in False
 intro$match.impsocio_esta[is.na(intro$match.impsocio_esta)] <- FALSE
 intro$match.impeco_esta[is.na(intro$match.impeco_esta)] <- FALSE
 
@@ -412,7 +411,6 @@ levels(intro$TO)[levels(intro$TO)=="Ci<e9>naga de Santa Marta, Magdalena river"]
 levels(intro$TO)[levels(intro$TO)=="Viti Levu, Fiji"]<-"Fiji"
 levels(intro$TO)[levels(intro$TO)=="Balykchi fish farm"]<-"Kyrgyzstan"
 levels(intro$TO)[levels(intro$TO)=="Kirgizia"]<-"Kyrgyzstan"
-#levels(intro$TO)[levels(intro$TO)=="Balykchi fish farm"]<-"Kirgizia"
 levels(intro$TO)[levels(intro$TO)=="Efate & Tana Islands, Vanuatu"]<-"Vanuatu"
 levels(intro$TO)[levels(intro$TO)=="Brunei"]<-"Brunei Darussalam"
 levels(intro$TO)[levels(intro$TO)=="Lake Kyle"]<-"Zimbabwe"
@@ -612,7 +610,7 @@ nbcounest<-rbind(nbcountryesta, spestano2)
 nbcountryesta<-aggregate(nbcounest$nb.country.establish, by=list(Species=nbcounest$Species), FUN=sum)
 colnames(nbcountryesta)<-c("Species", "nb.country.establish")
 intro<-merge(x = intro, y = nbcountryesta, by = "Species", all.x = TRUE)
-#intro$nb.country.establish[is.na(intro$nb.country.establish)] <- 0
+
 
 
 #Impact
@@ -704,7 +702,7 @@ bap<-subset(intro, Reason == "removal of natural barrier")
 #transform the pathways in several binary variables#
 intror<-intro[, c("Species","Reason")]
 
-intror[is.na(intror)] <- "Unknown"  ###la fonction après ne comprends pas les NA, donc obligé de les remplacer
+intror[is.na(intror)] <- "Unknown"  ###transform NA 
 introname<-levels(as.factor(intro$Reason))
 levels(intror$Reason)<-as.factor(levels(intror$Reason))
 
@@ -890,9 +888,9 @@ useinfo<-use[, c("Species", "Nb_uses", "Used_by_humans")]
 
  ###Diet-----------------------------------------------------------------------------------------------#####
  
-# ##sensitivity analysis -- get 5 colonnes of differents diet
+# ##sensitivity analysis -- get 100 columns of differents diet
 # SENSDIET<-list()##----------------##
-# for (sd in 1:5) {#----------------##
+# for (sd in 1:100) {#----------------##
 #   
 
 food<-fooditems()
@@ -1008,9 +1006,6 @@ for (i in 1:length(maxdiet3[,1])) {####replace the multiple max diet by the max 
 }
 
 
-# notre<-subset(maxdiet3, detritus=="not represented in species"|nekton=="not represented in species"|plants=="not represented in species"|zoobenthos=="not represented in species" |zooplankton=="not represented in species")
-# table(notre$Species %in% pooluseddiet$Species)
-
 nbdietorder<-as.data.frame(nbdietorder)
 
 nbdietorderwide<-stats::reshape(nbdietorder, idvar = "Order", timevar = "FoodI", direction = "wide")
@@ -1043,9 +1038,8 @@ setwd("D:/these/Axe_2/outputs/sensitivity-analysis")
 saveRDS(SENSDIET, "SENSDIET.rds")##
 setwd("D:/these/Axe_2")
 
-#Ajout du nb diet dans la table "intro"
+#Add diet in "intro" table
 intro<-merge(x = intro, y = nbdiet, by = "Species", all.x = TRUE)
-#Ajout du maxdiet dans la table "intro"
 intro<-merge(x = intro, y = maxdiet4[,c("Species", "Maj.Diet", "NbDietMax", "maxdiet status")], by = "Species", all.x = TRUE)
 
 
@@ -1120,125 +1114,125 @@ intronative<-intronative[,c( c("X6.Fishbase.Valid.Species.Name", "X1.Basin.Name"
 bassin<-tedescobassin[,c( c("X1.Basin.Name", "X9.Surface.Area"))]
 
 intronative<-merge(x = intronative, y = bassin, by = "X1.Basin.Name", all.x = TRUE)
-# 
-# ##le shapefile
-# library(rgdal)
-# library(raster)
-# library(sp)
-# 
-# shp <- readOGR(dsn = 'D:/these/database/Leprieur_Tedesco/Basin042017_3119.shp')
-# 
-# 
-# clim <- getData("worldclim",var="bio",res=2.5)
-# # Bio1<-clim$bio1
-# # Bio12<-clim$bio12
-# 
-# Bio5<-clim$bio5  #max temp. warmest month
-# Bio6<-clim$bio6 #Min temp. coldest month
-# 
-# ####une esp?ce peut ?tre associ?e ? plusieurs bassins, donc plutot faire comme ?a :
-# Bassinspecies<-intronative[,c("X1.Basin.Name","X6.Fishbase.Valid.Species.Name")]
-# Bassinspecies<-unique(Bassinspecies) #il y a des infos en double!
-# colnames(Bassinspecies)<-c("BassinName", "Species") #les esp?ces associ?es aux bassins
-# # i<-"Abramis brama"
-# # i<-"Cottus kazika"
-# 
-# BassinspeciesLL<-unique(Bassinspecies$Species)
-# 
-# tableBio56<-data.frame(Area.Bassins=numeric(),
-#                      MaxBio5=numeric(),
-#                      MinBio6=numeric())
-# 
-# N<-0
-# for (i in BassinspeciesLL)
-# {
-#   N<-N+1
-#   A<-subset(Bassinspecies, Species==i)
-#   B<-as.character(as.factor(A$BassinName))
-#   
-#   poly<-subset(shp, BasinName %in% B)
-#   ext<-extent(poly)
-#   
-#   ##################BIO5
-#   rshp<-crop(Bio5,ext,snap="out")
-#   clip5<-raster::mask(rshp,poly)
-#   clip5<-stack(clip5)
-#   maxquant5<-cellStats(clip5, stat='quantile', probs=0.95, na.rm=TRUE)
-#   tableBio56[i,1]<-sum(poly$Surf_area)
-#   tableBio56[i,2]<-maxquant5
-# 
-#   
-#   ##################BIO6
-#   rshp6<-crop(Bio6,ext,snap="out")
-#   clip6<-raster::mask(rshp6,poly)
-#   clip6<-stack(clip6)
-#   minquant6<-cellStats(clip6, stat='quantile', probs=0.05, na.rm=TRUE)
-#   tableBio56[i,3]<-minquant6
-#   
-#   print((N/length(BassinspeciesLL))*100)
-#   
-# }
-# ####write.csv2(as.data.frame(tableBio), "BioperSpecies.csv")
-# write.csv2(as.data.frame(tableBio56), "Bio5_Bio6perSpecies.csv")
-                     
-                     
-                     
-                     
-                     
-                     
 
-####BIO 1 et BIO 12
-# tableBio<-data.frame(Area.Bassins=numeric(),
-#                   MedianBio1=numeric(),
-#                   MeanBio1=numeric(),
-#                   MaxBio1=numeric(),
-#                   MinBio1=numeric(),
-#                   MedianBio12=numeric(),
-#                   MeanBio12=numeric(),
-#                   MaxBio12=numeric(),
-#                   MinBio12=numeric())
-# N<-0
-# for (i in BassinspeciesLL)
-#   {
-#   N<-N+1
-#   A<-subset(Bassinspecies, Species==i)
-#   B<-as.character(as.factor(A$BassinName))
-# 
-#     poly<-subset(shp, BasinName %in% B)
-#       ext<-extent(poly)
-# 
-#       ##################BIO1
-#       rshp<-crop(Bio1,ext,snap="out")
-#       clip1<-raster::mask(rshp,poly)
-#       clip1<-stack(clip1)
-#       mean1<-cellStats(clip1, stat='mean', na.rm=TRUE)
-#       median1<-cellStats(clip1, stat='median', na.rm=TRUE)
-#       max1<-cellStats(clip1, stat='max', na.rm=TRUE)
-#       min1<-cellStats(clip1, stat='min', na.rm=TRUE)
-#       tableBio[i,1]<-sum(poly$Surf_area)
-#       tableBio[i,2]<-median1
-#       tableBio[i,3]<-mean1
-#       tableBio[i,4]<-max1
-#       tableBio[i,5]<-min1
-# 
-#       ##################BIO12
-#       rshp12<-crop(Bio12,ext,snap="out")
-#       clip12<-raster::mask(rshp12,poly)
-#       clip12<-stack(clip12)
-#       median12<-cellStats(clip12, stat='median', na.rm=TRUE)
-#       mean12<-cellStats(clip12, stat='mean', na.rm=TRUE)
-#       max12<-cellStats(clip12, stat='max', na.rm=TRUE)
-#       min12<-cellStats(clip12, stat='min', na.rm=TRUE)
-#       tableBio[i,6]<-median12
-#       tableBio[i,7]<-mean12
-#       tableBio[i,8]<-max12
-#       tableBio[i,9]<-min12
-# 
-# print((N/length(BassinspeciesLL))*100)
-# 
-# }
+##le shapefile
+library(rgdal)
+library(raster)
+library(sp)
+
+shp <- readOGR(dsn = 'D:/these/database/Leprieur_Tedesco/Basin042017_3119.shp')
+
+
+clim <- getData("worldclim",var="bio",res=2.5)
+# Bio1<-clim$bio1
+# Bio12<-clim$bio12
+
+Bio5<-clim$bio5  #max temp. warmest month
+Bio6<-clim$bio6 #Min temp. coldest month
+
+####une esp?ce peut ?tre associ?e ? plusieurs bassins, donc plutot faire comme ?a :
+Bassinspecies<-intronative[,c("X1.Basin.Name","X6.Fishbase.Valid.Species.Name")]
+Bassinspecies<-unique(Bassinspecies) #il y a des infos en double!
+colnames(Bassinspecies)<-c("BassinName", "Species") #les esp?ces associ?es aux bassins
+# i<-"Abramis brama"
+# i<-"Cottus kazika"
+
+BassinspeciesLL<-unique(Bassinspecies$Species)
+
+tableBio56<-data.frame(Area.Bassins=numeric(),
+                     MaxBio5=numeric(),
+                     MinBio6=numeric())
+
+N<-0
+for (i in BassinspeciesLL)
+{
+  N<-N+1
+  A<-subset(Bassinspecies, Species==i)
+  B<-as.character(as.factor(A$BassinName))
+
+  poly<-subset(shp, BasinName %in% B)
+  ext<-extent(poly)
+
+  ##################BIO5
+  rshp<-crop(Bio5,ext,snap="out")
+  clip5<-raster::mask(rshp,poly)
+  clip5<-stack(clip5)
+  maxquant5<-cellStats(clip5, stat='quantile', probs=0.95, na.rm=TRUE)
+  tableBio56[i,1]<-sum(poly$Surf_area)
+  tableBio56[i,2]<-maxquant5
+
+
+  ##################BIO6
+  rshp6<-crop(Bio6,ext,snap="out")
+  clip6<-raster::mask(rshp6,poly)
+  clip6<-stack(clip6)
+  minquant6<-cellStats(clip6, stat='quantile', probs=0.05, na.rm=TRUE)
+  tableBio56[i,3]<-minquant6
+
+  print((N/length(BassinspeciesLL))*100)
+
+}
 ####write.csv2(as.data.frame(tableBio), "BioperSpecies.csv")
-##write.csv2(as.data.frame(tableBio56), "Bio5_Bio6perSpecies.csv")
+write.csv2(as.data.frame(tableBio56), "Bio5_Bio6perSpecies.csv")
+
+
+
+
+
+
+
+###BIO 1 et BIO 12
+tableBio<-data.frame(Area.Bassins=numeric(),
+                  MedianBio1=numeric(),
+                  MeanBio1=numeric(),
+                  MaxBio1=numeric(),
+                  MinBio1=numeric(),
+                  MedianBio12=numeric(),
+                  MeanBio12=numeric(),
+                  MaxBio12=numeric(),
+                  MinBio12=numeric())
+N<-0
+for (i in BassinspeciesLL)
+  {
+  N<-N+1
+  A<-subset(Bassinspecies, Species==i)
+  B<-as.character(as.factor(A$BassinName))
+
+    poly<-subset(shp, BasinName %in% B)
+      ext<-extent(poly)
+
+      ##################BIO1
+      rshp<-crop(Bio1,ext,snap="out")
+      clip1<-raster::mask(rshp,poly)
+      clip1<-stack(clip1)
+      mean1<-cellStats(clip1, stat='mean', na.rm=TRUE)
+      median1<-cellStats(clip1, stat='median', na.rm=TRUE)
+      max1<-cellStats(clip1, stat='max', na.rm=TRUE)
+      min1<-cellStats(clip1, stat='min', na.rm=TRUE)
+      tableBio[i,1]<-sum(poly$Surf_area)
+      tableBio[i,2]<-median1
+      tableBio[i,3]<-mean1
+      tableBio[i,4]<-max1
+      tableBio[i,5]<-min1
+
+      ##################BIO12
+      rshp12<-crop(Bio12,ext,snap="out")
+      clip12<-raster::mask(rshp12,poly)
+      clip12<-stack(clip12)
+      median12<-cellStats(clip12, stat='median', na.rm=TRUE)
+      mean12<-cellStats(clip12, stat='mean', na.rm=TRUE)
+      max12<-cellStats(clip12, stat='max', na.rm=TRUE)
+      min12<-cellStats(clip12, stat='min', na.rm=TRUE)
+      tableBio[i,6]<-median12
+      tableBio[i,7]<-mean12
+      tableBio[i,8]<-max12
+      tableBio[i,9]<-min12
+
+print((N/length(BassinspeciesLL))*100)
+
+}
+##write.csv2(as.data.frame(tableBio), "BioperSpecies.csv")
+write.csv2(as.data.frame(tableBio56), "Bio5_Bio6perSpecies.csv")
 
 
 ####add to the intro table
@@ -1476,7 +1470,7 @@ tableintro<-unique(rbind(Introtable, IntroallTable))
 table(tableintro$Introduced)
 taloup<-unique(tableintro$Species) #pour être sur que les espèce n'apparaissent qu'une fois
 
-##enregistrer la tabe intro
+
 #write.csv2(as.data.frame(tableintro), "./outputs/introunique.csv")
 
 
@@ -1508,7 +1502,7 @@ tableimpacteco<-unique(rbind(impactecotableyes, impactecoallTable))
 table(tableimpacteco$EcolEff)
 taloup<-unique(tableimpacteco$Species)
 
-##enregistrer la table intro
+
 #write.csv2(as.data.frame(tableimpacteco), "./outputs/impactecounique.csv")
 
 
@@ -1538,12 +1532,12 @@ UNIQUEINTRO<-merge(x = UNIQUEINTRO, y = tableimpactSocio[,c("Species","SocioEff"
 # UNIQUEINTRO<-merge(x = UNIQUEINTRO, y = Nbeachstep[,c("Species","Establish.percent","Socioimp.percent","Ecoimp.percent")], by = "Species", all.x = TRUE)
 
 
-#######CHANGER LORDRE DES COLONNES
+#######change column order
 #UNIQUEINTRO<-UNIQUEINTRO%>%relocate(Species, Introduced, Estabwild, Establish.percent,EcolEff, Ecoimp.percent, SocioEff, Socioimp.percent)
 UNIQUEINTRO<-UNIQUEINTRO%>%relocate(Species, Introduced, Estabwild,EcolEff, SocioEff)
 
 
-##enregistrer la table UNIQUE intro
+
 UNIQUEINTRO<-unique(UNIQUEINTRO)
 write.csv2(as.data.frame(UNIQUEINTRO), "./outputs/UNIQUEINTRO_selectedregdietESSAICHANGE.csv")
 
@@ -1619,7 +1613,7 @@ levels(INTRO$Order)[levels(INTRO$Order)=="Ophidiiformes"]<-"Other"
 levels(INTRO$Order)[levels(INTRO$Order)=="Orectolobiformes"]<-"Other"
 levels(INTRO$Order)[levels(INTRO$Order)=="Albuliformes"]<-"Other"
 
-# ### rescaler quanti variables
+# ### 
 # INTRO$Nb_uses<-rescale(INTRO$Nb_uses)
 # INTRO$Nb_reasons<-rescale(INTRO$Nb_reasons)
 # INTRO$TL<-rescale(INTRO$TL)
