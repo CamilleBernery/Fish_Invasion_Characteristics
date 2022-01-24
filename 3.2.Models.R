@@ -305,10 +305,10 @@ for (i in 1:2) {
   )])
   
   names(no.na.data)[2]<-"nb.country.esta"
-  ###garder que les valeurs sup à 0
+  ###keep >0 values
   no.na.data.1<-subset(no.na.data,nb.country.esta> 0) ##ne garder les valeurs que au dessus de 0
   
-  ###classe des variables
+  ###variable type
   no.na.data.1[c("Maj.Diet",
                  "RepGuild1", "Maj.Region", "Used_by_humans" )]<-
     lapply(no.na.data.1[c("Maj.Diet",
@@ -319,7 +319,7 @@ for (i in 1:2) {
   
   
   
-  #####modele de poisson
+  #####poisson model
   
   
   mod<-glm(nb.country.esta~TL + Maj.Diet + Nb.Diet+
@@ -331,7 +331,7 @@ for (i in 1:2) {
            data = no.na.data.1, na.action = na.fail, family="poisson")
   
   
-  ##checker l'overdispersion :
+  ##check for overdispersion :
   aicmod<-AIC(mod)
   infomodelintro[i, "AIC mod. 1"]<-aicmod
   summary(mod)
@@ -372,7 +372,7 @@ for (i in 1:2) {
                      BlBd + PFiBd,#+
                    data = no.na.data.1, na.action = na.fail, family="poisson")
   }
-  ##checker l'overdispersion : 
+  ##check for overdispersion : 
   sim_fmnb <- simulateResiduals(modnb, n=999)
   #plot(sim_fmnb)
   testDispersion(sim_fmnb) 
@@ -389,7 +389,7 @@ for (i in 1:2) {
   modnbfiltre$theta
   modnb$theta
   
-  ##checker l'overdispersion : 
+  ##check for overdispersion : 
   testDispersion(modnbfiltre)
   shap<-shapiro.test(residuals(modnbfiltre))
   infomodelintro[i,6]<-shap$p.value
@@ -957,10 +957,10 @@ no.na.data <- na.omit(INTRO[c("Species",variable[i],"TL" ,
 )])
 
 names(no.na.data)[2]<-"nb.country.esta"
-###garder que les valeurs sup à 0
+###keep >0 values
 no.na.data.1<-subset(no.na.data,nb.country.esta> 0) ##ne garder les valeurs que au dessus de 0
 
-###classe des variables
+###variable type
 no.na.data.1[c("Maj.Diet",
                "RepGuild1", "Maj.Region", "Used_by_humans" )]<-
   lapply(no.na.data.1[c("Maj.Diet",
@@ -971,7 +971,7 @@ no.na.data.1[c("Maj.Diet",
 
 
 
-#####modele de poisson
+#####poisson model
 
 
 mod<-glm(nb.country.esta~TL + Maj.Diet + Nb.Diet+
@@ -983,7 +983,7 @@ mod<-glm(nb.country.esta~TL + Maj.Diet + Nb.Diet+
          data = no.na.data.1, na.action = na.fail, family="poisson")
 
 
-##checker l'overdispersion :
+##check for overdispersion :
 aicmod<-AIC(mod)
 infomodel[i, "AIC mod. 1"]<-aicmod
 summary(mod)
@@ -1024,7 +1024,7 @@ modnb<-glm.nb(nb.country.esta~TL + Maj.Diet + Nb.Diet +
                    BlBd + PFiBd,#+
                  data = no.na.data.1, na.action = na.fail, family="poisson")
 }
-##checker l'overdispersion : 
+##check for overdispersion : 
 sim_fmnb <- simulateResiduals(modnb, n=999)
 #plot(sim_fmnb)
 testDispersion(sim_fmnb) 
@@ -1041,7 +1041,7 @@ modnbfiltre<- stepAIC(modnb, direction = "both")
 modnbfiltre$theta
 modnb$theta
 
-##checker l'overdispersion : 
+##check for overdispersion : 
 testDispersion(modnbfiltre)
 
 #shaptest
@@ -1318,14 +1318,14 @@ no.na.data <- na.omit(INTRO[c("Species","nb.country.impeco", "TL" ,
 )])
 
 
-###garder que les valeurs sup à 0
+###keep >0 values
 table(no.na.data$nb.country.impeco)
 no.na.data.1<-subset(no.na.data, nb.country.impeco > 0) ##ne garder les valeurs que au dessus de 0
 
 table(no.na.data.1$nb.country.impeco)
 
 
-###classe des variables
+###variable type
 no.na.data.1[c("Maj.Diet",
                "RepGuild1", "Maj.Region", "Used_by_humans" )]<-
   lapply(no.na.data.1[c("Maj.Diet",
@@ -1432,7 +1432,7 @@ mod<-glm(nb.country.impeco~TL + Maj.Diet + Nb.Diet+
 
 
 
-##checker l'overdispersion : 
+##check for overdispersion : 
 summary(mod)
 dis<-dispersiontest(mod)
 infomodelimpact[1,2]<-dis$p.value
@@ -1492,7 +1492,7 @@ if (dis$p.value <0.05) {
 # 
 # summary(modnb)
 
-##checker l'overdispersion : 
+##check for overdispersion : 
 sim_fmnb <- simulateResiduals(modnb, n=999)
 #plot(sim_fmnb)
 testDispersion(sim_fmnb) 
@@ -1508,7 +1508,7 @@ modnbfiltre<- stepAIC(modnb, direction = "both")
 modnbfiltre$theta
 modnb$theta
 
-##checker l'overdispersion : 
+##check for overdispersion : 
 shap<-shapiro.test(residuals(modnbfiltre))
 infomodelimpact[1,6]<-shap$p.value
 dispersiontest(modnbfiltre)
