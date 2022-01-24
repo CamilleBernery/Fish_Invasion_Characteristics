@@ -36,7 +36,6 @@ library(ellipse)
 
 
 #####Load data#####
-###d'abord lancer le script 2 !!!! ==> representation des donnees
 rm(list = ls())
 setwd("D:/these/Axe_2")
 INTRO<-read.csv2("./outputs/INTRO_all_good2.csv")
@@ -77,12 +76,12 @@ nonadata<-cbind(no.na.data, nb)
 alldatabase[[1]]<-nonadata
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntro<-subset(nonadata, Introduced==0)
 AllNotIntro[[1]]<-NotIntro
 Intro<-subset(nonadata, Introduced==1)
 AllIntro[[1]]<-Intro
-nb2<-rep(1, length(NotIntro[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntro[,1])) 
 NotIntro1<-cbind(NotIntro, nb2)
 listofNotIntro <-replicate(999, NotIntro1 %>% sample_n(length(Intro[,1])), simplify=F)
 
@@ -109,12 +108,12 @@ nonadataaqua<-cbind(no.na.data.aqua, nb)
 alldatabase[[2]]<-nonadataaqua
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntroaqua<-subset(nonadataaqua, Aquaculture==0)
 Introaqua<-subset(nonadataaqua, Aquaculture==1)
 AllNotIntro[[2]]<-NotIntroaqua
 AllIntro[[2]]<-Introaqua
-nb2<-rep(1, length(NotIntroaqua[,1])) #pour pouvoir faire le tableau de aquaingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntroaqua[,1])) 
 NotIntro1aqua<-cbind(NotIntroaqua, nb2)
 listofNotIntroaqua <-replicate(999, NotIntro1aqua %>% sample_n(length(Introaqua[,1])), simplify=F)
 
@@ -141,12 +140,12 @@ nonadatacont<-cbind(no.na.data.cont, nb)
 alldatabase[[3]]<-nonadatacont
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntrocont<-subset(nonadatacont, Species.control==0)
 Introcont<-subset(nonadatacont, Species.control==1)
 AllNotIntro[[3]]<-NotIntrocont
 AllIntro[[3]]<-Introcont
-nb2<-rep(1, length(NotIntrocont[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntrocont[,1])) 
 NotIntro1cont<-cbind(NotIntrocont, nb2)
 listofNotIntrocont <-replicate(999, NotIntro1cont %>% sample_n(length(Introcont[,1])), simplify=F)
 
@@ -181,13 +180,13 @@ alldatabase[[4]]<-nonadataorna
 
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntroorna<-subset(nonadataorna, ornamental==0)
 Introorna<-subset(nonadataorna, ornamental==1)
 AllNotIntro[[4]]<-NotIntroorna
 AllIntro[[4]]<-Introorna
 
-nb2<-rep(1, length(NotIntroorna[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntroorna[,1])) 
 NotIntro1orna<-cbind(NotIntroorna, nb2)
 listofNotIntroorna <-replicate(999, NotIntro1orna %>% sample_n(length(Introorna[,1])), simplify=F)
 alldatabasesample[[4]]<-listofNotIntroorna
@@ -215,12 +214,12 @@ nonadatafish<-cbind(no.na.data.fish, nb)
 alldatabase[[5]]<-nonadatafish
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntrofish<-subset(nonadatafish, fisheries==0)
 Introfish<-subset(nonadatafish, fisheries==1)
 AllNotIntro[[5]]<-NotIntrofish
 AllIntro[[5]]<-Introfish
-nb2<-rep(1, length(NotIntrofish[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntrofish[,1]))
 NotIntro1fish<-cbind(NotIntrofish, nb2)
 listofNotIntrofish <-replicate(999, NotIntro1fish %>% sample_n(length(Introfish[,1])), simplify=F)
 alldatabasesample[[5]]<-listofNotIntrofish
@@ -246,12 +245,12 @@ nonadataacci<-cbind(no.na.data.acci, nb)
 alldatabase[[6]]<-nonadataacci
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntroacci<-subset(nonadataacci, Accidental==0)
 Introacci<-subset(nonadataacci, Accidental==1)
 AllNotIntro[[6]]<-NotIntroacci
 AllIntro[[6]]<-Introacci
-nb2<-rep(1, length(NotIntroacci[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntroacci[,1])) 
 NotIntro1acci<-cbind(NotIntroacci, nb2)
 listofNotIntroacci <-replicate(999, NotIntro1acci %>% sample_n(length(Introacci[,1])), simplify=F)
 alldatabasesample[[6]]<-listofNotIntroacci
@@ -277,12 +276,12 @@ nonadataspor<-cbind(no.na.data.spor, nb)
 alldatabase[[7]]<-nonadataspor
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123)
 NotIntrospor<-subset(nonadataspor, Sport.Angling==0)
 Introspor<-subset(nonadataspor, Sport.Angling==1)
 AllNotIntro[[7]]<-NotIntrospor
 AllIntro[[7]]<-Introspor
-nb2<-rep(1, length(NotIntrospor[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntrospor[,1]))
 NotIntro1spor<-cbind(NotIntrospor, nb2)
 listofNotIntrospor <-replicate(999, NotIntro1spor %>% sample_n(length(Introspor[,1])), simplify=F)
 alldatabasesample[[7]]<-listofNotIntrospor
@@ -309,12 +308,12 @@ nonadatadiff<-cbind(no.na.data.diff, nb)
 alldatabase[[8]]<-nonadatadiff
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntrodiff<-subset(nonadatadiff, Diffusion==0)
 Introdiff<-subset(nonadatadiff, Diffusion==1)
 AllNotIntro[[8]]<-NotIntrodiff
 AllIntro[[8]]<-Introdiff
-nb2<-rep(1, length(NotIntrodiff[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntrodiff[,1])) 
 NotIntro1diff<-cbind(NotIntrodiff, nb2)
 listofNotIntrodiff <-replicate(999, NotIntro1diff %>% sample_n(length(Introdiff[,1])), simplify=F)
 alldatabasesample[[8]]<-listofNotIntrodiff
@@ -376,11 +375,11 @@ for (y in 1:length(alldatabase)){
   
   
 
-########tests par modalité parental care##################
+########tests per modality parental care##################
 dataPA<-ddply(alldatabase[[y]], c("RepGuild1", namecolumn[y]), summarise, nb=sum(nb))
-dataTPA<-subset(dataPA, dataPA[,2]==1) #juste les threatened
+dataTPA<-subset(dataPA, dataPA[,2]==1) #threatened
 class(dataTPA$nb)<-"integer"
-dataNTPA<-subset(dataPA, dataPA[,2]==0) #juste les threatened
+dataNTPA<-subset(dataPA, dataPA[,2]==0) #non-threatened
 
 
 
@@ -396,18 +395,18 @@ dataNTPA2
 
 
 
-#faire les tableau de contingence pour T
+#Contingence table
 dataTPA2<-dataTPA[, c(1,3)]
 dataTPAcontin2 <- data.frame(t(dataTPA2[-1]))
 colnames(dataTPAcontin2) <- dataTPA2[, 1]
-val <- colnames(dataTPAcontin2)#######le mettre ? la bonne place
+val <- colnames(dataTPAcontin2)
 dataTPAcontin <- dataTPAcontin2[,order(val)]
 
 
 dataNTPA2<-dataNTPA[, c(1,3)]
 dataNTPAcontin2 <- data.frame(t(dataNTPA2[-1]))
 colnames(dataNTPAcontin2) <- dataNTPA2[, 1]
-Nval <- colnames(dataNTPAcontin2)#######le mettre ? la bonne place
+Nval <- colnames(dataNTPAcontin2)
 dataNTPAcontin <- dataNTPAcontin2[,order(val)]
 
 
@@ -416,8 +415,8 @@ ALLpvaluesPA<-list()
 ALLpvaluesPA2<-list()
 
 for (j in 1:length(dataTPAcontin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAcontin[,j], (sum(dataTPAcontin)-dataTPAcontin[,j]))
 
     dataNTcontin <- dataNTPAcontin
@@ -462,8 +461,8 @@ percentpvalue2<-c()
 
 
 for (j in 1:length(dataTPAcontin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAcontin[,j], (sum(dataTPAcontin)-dataTPAcontin[,j]))
   
   for (i in 1:length(alldatabasesample[[y]])){
@@ -471,7 +470,7 @@ for (j in 1:length(dataTPAcontin)) {
     dataNTcontin <- data.frame(t(dataNT[-1]))
     colnames(dataNTcontin) <- dataNT[, 1]
     
-    if (is.null(dataNTcontin$bearers)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+    if (is.null(dataNTcontin$bearers)==T){  ##if no column, put a zero
       dataNTcontin$bearers=0
     }
     if (is.null(dataNTcontin$guarders)==T){
@@ -502,10 +501,9 @@ for (j in 1:length(dataTPAcontin)) {
   print(j)
 }
 
-warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
-#les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
+warnings() 
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(percentpvalue) #chi.test
 row.names(Resultschitest)<-names(dataNTcontin)
 Resultschitest
@@ -520,15 +518,11 @@ names(FTESTpercent)[c(1,2,3)]<-rownames(ResultsFtest)
 
 
 
-
-
-
-
-########tests par modalité Maj.Diet##################
+########tests per modality Maj.Diet##################
 dataPA<-ddply(alldatabase[[y]], c("Maj.Diet", namecolumn[y]), summarise, nb=sum(nb))
-dataTPA<-subset(dataPA, dataPA[,2]==1) #juste les threatened
+dataTPA<-subset(dataPA, dataPA[,2]==1) #threatened
 class(dataTPA$nb)<-"integer"
-dataNTPA<-subset(dataPA, dataPA[,2]==0) #juste les threatened
+dataNTPA<-subset(dataPA, dataPA[,2]==0) #non-threatened
 
 
 
@@ -568,17 +562,17 @@ dataNTPA2<-cbind(dataNTPA, b)
 dataNTPA2
 
 
-#faire les tableau de ingence pour T
+#Contingence table
 dataTPA2<-dataTPA[, c(1,3)]
 dataTPAin2 <- data.frame(t(dataTPA2[-1]))
 colnames(dataTPAin2) <- dataTPA2[, 1]
-val <- colnames(dataTPAin2)#######le mettre ? la bonne place
+val <- colnames(dataTPAin2)
 dataTPAin <- dataTPAin2[,order(val)]
 
 dataNTPA2<-dataNTPA2[, c(1,3)]
 dataNTPAcontin2 <- data.frame(t(dataNTPA2[-1]))
 colnames(dataNTPAcontin2) <- dataNTPA2[, 1]
-Nval <- colnames(dataNTPAcontin2)#######le mettre ? la bonne place
+Nval <- colnames(dataNTPAcontin2)
 dataNTPAcontin <- dataNTPAcontin2[,order(val)]
 
 
@@ -588,8 +582,8 @@ ALLpvaluesPA<-list()
 ALLpvaluesPA2<-list()
 
 for (j in 1:length(dataTPAin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() 
+  pvaluesPA2<-c() 
   table<-cbind(dataTPAin[,j], (sum(dataTPAin)-dataTPAin[,j]))
   
   dataNTcontin <- dataNTPAcontin
@@ -609,7 +603,7 @@ for (j in 1:length(dataTPAin)) {
 }
 
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(ALLpvaluesPA) #chi.test
 colnames(Resultschitest)<-names(dataNTPAcontin)
 Resultschitest
@@ -622,8 +616,6 @@ ResultsFtest
 FTEST[y, c(4,5,6,7,8)]<-ResultsFtest
 names(FTEST)[c(4,5,6,7,8)]<-colnames(ResultsFtest)
 
-##pour chaque ?chantillon, tableau de ingence puis test de chi2
-#Dans certaines cat?giries on a des 0 parfois : emp?che de faire un chi2!! ==> test exact de fisher ? la place?
 
 ALLpvaluesPA<-list()
 ALLpvaluesPA2<-list()
@@ -632,8 +624,8 @@ percentpvalue2<-c()
 
 
 for (j in 1:length(dataTPAin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAin[,j], (sum(dataTPAin)-dataTPAin[,j]))
   
   for (i in 1:length(alldatabasesample[[y]])){
@@ -641,14 +633,14 @@ for (j in 1:length(dataTPAin)) {
     dataNTin <- data.frame(t(dataNT[-1]))
     colnames(dataNTin) <- dataNT[, 1]
     
-    if (is.null(dataNTin$detritus)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+    if (is.null(dataNTin$detritus)==T){  ##if no column, put a zero
       dataNTin$detritus=0
     }
     if (is.null(dataNTin$nekton)==T){
       dataNTin$nekton=0
     }
     
-    if (is.null(dataNTin$plants)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+    if (is.null(dataNTin$plants)==T){  #if no column, put a zero
       dataNTin$plants=0
     }
     if (is.null(dataNTin$zoobenthos)==T){
@@ -680,10 +672,8 @@ for (j in 1:length(dataTPAin)) {
   print(j)
 }
 
-warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
-#les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
-
-#Pourcentage de test positifs pour chaque modalit?s
+warnings() 
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(percentpvalue) #chi.test
 row.names(Resultschitest)<-names(dataNTin)
 Resultschitest
@@ -701,11 +691,11 @@ names(FTESTpercent)[c(4,5,6,7,8)]<-rownames(ResultsFtest)
 
 
 
-########tests par modalité region majoritaire##################
+########tests per modality region majoritaire##################
 dataPA<-ddply(alldatabase[[y]], c("Maj.Region", namecolumn[y]), summarise, nb=sum(nb))
-dataTPA<-subset(dataPA, dataPA[,2]==1) #juste les threatened
+dataTPA<-subset(dataPA, dataPA[,2]==1) #threatened
 class(dataTPA$nb)<-"integer"
-dataNTPA<-subset(dataPA, dataPA[,2]==0) #juste les threatened
+dataNTPA<-subset(dataPA, dataPA[,2]==0) #non-threatened
 
 
 
@@ -733,17 +723,17 @@ dataNTPA2
 
 
 
-#faire les tableau de contingence pour T
+#Contingence table
 dataTPA2<-dataTPA[, c(1,3)]
 dataTPAcontin2 <- data.frame(t(dataTPA2[-1]))
 colnames(dataTPAcontin2) <- dataTPA2[, 1]
-val <- colnames(dataTPAcontin2)#######le mettre ? la bonne place
+val <- colnames(dataTPAcontin2)
 dataTPAcontin <- dataTPAcontin2[,order(val)]
 
 dataNTPA2<-dataNTPA[, c(1,3)]
 dataNTPAcontin2 <- data.frame(t(dataNTPA2[-1]))
 colnames(dataNTPAcontin2) <- dataNTPA2[, 1]
-val <- colnames(dataNTPAcontin2)#######le mettre ? la bonne place
+val <- colnames(dataNTPAcontin2)
 dataNTPAcontin <- dataNTPAcontin2[,order(val)]
 
 
@@ -763,8 +753,8 @@ ALLpvaluesPA<-list()
 ALLpvaluesPA2<-list()
 
 for (j in 1:length(dataTPAcontin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAcontin[,j], (sum(dataTPAcontin)-dataTPAcontin[,j]))
   
   dataNTcontin <- dataNTPAcontin
@@ -784,12 +774,12 @@ for (j in 1:length(dataTPAcontin)) {
 }
 
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(ALLpvaluesPA) #chi.test
 colnames(Resultschitest)<-names(dataNTPAcontin)
 Resultschitest
 # 
-#   if (is.null(dataNTPAcontin$Australian)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+#   if (is.null(dataNTPAcontin$Australian)==T){  #if no column, put a zero
 #     Resultschitest<- rbind(c(1,NA), Resultschitest)
 #   }
 
@@ -801,7 +791,7 @@ names(CHITEST)[c(9,10,11,12,13,14)]<-colnames(Resultschitest)
 ResultsFtest<-as.data.frame(ALLpvaluesPA2) #fiher test
 colnames(ResultsFtest)<-names(dataNTPAcontin)
 ResultsFtest
-# if (is.null(dataNTPAcontin$Australian)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+# if (is.null(dataNTPAcontin$Australian)==T){  #if no column, put a zero
 #   ResultsFtest<- rbind(c(1,NA), ResultsFtest)
 # }
 
@@ -814,8 +804,6 @@ names(FTEST)[c(9,10,11,12,13,14)]<-colnames(ResultsFtest)
 
 
 
-##pour chaque ?chantillon, tableau de contingence puis test de chi2
-#Dans certaines cat?giries on a des 0 parfois : emp?che de faire un chi2!! ==> test exact de fisher ? la place?
 
 ALLpvaluesPA<-list()
 ALLpvaluesPA2<-list()
@@ -824,8 +812,8 @@ percentpvalue2<-c()
 
 
 for (j in 1:length(dataTPAcontin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAcontin[,j], (sum(dataTPAcontin)-dataTPAcontin[,j]))
   
   for (i in 1:length(alldatabasesample[[y]])){
@@ -833,7 +821,7 @@ for (j in 1:length(dataTPAcontin)) {
     dataNTcontin <- data.frame(t(dataNT[-1]))
     colnames(dataNTcontin) <- dataNT[, 1]
     
-    if (is.null(dataNTcontin$Australian)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+    if (is.null(dataNTcontin$Australian)==T){  #if no column, put a zero
       dataNTcontin$Australian=0
     }
     if (is.null(dataNTcontin$Ethiopian)==T){
@@ -842,7 +830,7 @@ for (j in 1:length(dataTPAcontin)) {
     # if (is.null(dataNTcontin$Madagascan)==T){
     #   dataNTcontin$Madagascan=0
     # }
-    if (is.null(dataNTcontin$Nearctic)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+    if (is.null(dataNTcontin$Nearctic)==T){  #if no column, put a zero
       dataNTcontin$Nearctic=0
     }
     if (is.null(dataNTcontin$Neotropical)==T){
@@ -877,10 +865,8 @@ for (j in 1:length(dataTPAcontin)) {
   print(j)
 }
 
-warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
-#les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
-
-#Pourcentage de test positifs pour chaque modalit?s
+warnings() 
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(percentpvalue) #chi.test
 row.names(Resultschitest)<-names(dataNTcontin)
 Resultschitest
@@ -902,15 +888,15 @@ names(FTESTpercent)[c(9,10,11,12,13,14)]<-rownames(ResultsFtest)
 
 
 
-########tests par modalité human use##################
+########tests per modality human use##################
 head(alldatabase[[y]])
 dataFNPC<-ddply(alldatabase[[y]], c("Used_by_humans", namecolumn[y]), summarise, nb=sum(nb))
-dataTPC<-subset(dataFNPC, dataPA[,2]==1) #juste les threatened
-dataNTPC<-subset(dataFNPC, dataPA[,2]==0) #juste les non threatened
+dataTPC<-subset(dataFNPC, dataPA[,2]==1) #threatened
+dataNTPC<-subset(dataFNPC, dataPA[,2]==0) #non-threatened
 
 
 
-#faire les tableau de contingence pour T (threatened)
+#Contingence table (threatened)
 dataTPC2<-dataTPC[, c(1,3)]
 dataTPCcontin <- data.frame(t(dataTPC2[-1]))
 colnames(dataTPCcontin) <- dataTPC2[, 1]
@@ -919,9 +905,9 @@ colnames(dataTPCcontin) <- dataTPC2[, 1]
 
 
 dataPA<-ddply(alldatabase[[y]], c("Used_by_humans", namecolumn[y]), summarise, nb=sum(nb))
-dataTPA<-subset(dataPA, dataPA[,2]==1) #juste les threatened
+dataTPA<-subset(dataPA, dataPA[,2]==1) #threatened
 class(dataTPA$nb)<-"integer"
-dataNTPA<-subset(dataPA, dataPA[,2]==0) #juste les threatened
+dataNTPA<-subset(dataPA, dataPA[,2]==0) # non threatened
 
 
 
@@ -961,17 +947,17 @@ dataNTPA2
 # 3              1          0 356 0.667917448405
 
 
-#faire les tableau de contingence pour T
+#Contingence table
 dataTPA2<-dataTPA[, c(1,3)]
 dataTPAcontin2 <- data.frame(t(dataTPA2[-1]))
 colnames(dataTPAcontin2) <- dataTPA2[, 1]
-val <- colnames(dataTPAcontin2)#######le mettre ? la bonne place
+val <- colnames(dataTPAcontin2)
 dataTPAcontin <- dataTPAcontin2[,order(val)]
 
 dataNTPA2<-dataNTPA[, c(1,3)]
 dataNTPAcontin2 <- data.frame(t(dataNTPA2[-1]))
 colnames(dataNTPAcontin2) <- dataNTPA2[, 1]
-Nval <- colnames(dataNTPAcontin2)#######le mettre ? la bonne place
+Nval <- colnames(dataNTPAcontin2)
 dataNTPAcontin <- dataNTPAcontin2[,order(val)]
 
 
@@ -980,8 +966,8 @@ ALLpvaluesPA<-list()
 ALLpvaluesPA2<-list()
 
 for (j in 1:length(dataTPAcontin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAcontin[,j], (sum(dataTPAcontin)-dataTPAcontin[,j]))
   
   dataNTcontin <- dataNTPAcontin
@@ -1001,7 +987,7 @@ for (j in 1:length(dataTPAcontin)) {
 }
 
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(ALLpvaluesPA) #chi.test
 colnames(Resultschitest)<-names(dataNTPAcontin)
 Resultschitest
@@ -1016,9 +1002,6 @@ names(FTEST)[c(15,16)]<-colnames(ResultsFtest)
 
 
 
-##pour chaque ?chantillon, tableau de contingence puis test de chi2
-#Dans certaines cat?giries on a des 0 parfois : emp?che de faire un chi2!! ==> test exact de fisher ? la place?
-
 ALLpvaluesPA<-list()
 ALLpvaluesPA2<-list()
 percentpvalue<-c()
@@ -1026,8 +1009,8 @@ percentpvalue2<-c()
 
 
 for (j in 1:length(dataTPAcontin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAcontin[,j], (sum(dataTPAcontin)-dataTPAcontin[,j]))
   
   for (i in 1:length(alldatabasesample[[y]])){
@@ -1035,7 +1018,7 @@ for (j in 1:length(dataTPAcontin)) {
     dataNTcontin <- data.frame(t(dataNT[-1]))
     colnames(dataNTcontin) <- dataNT[, 1]
     
-    if (is.null(dataNTcontin$'1')==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+    if (is.null(dataNTcontin$'1')==T){  #if no column, put a zero
       dataNTcontin$'1'=0
     }
     if (is.null(dataNTcontin$'0')==T){
@@ -1064,10 +1047,9 @@ for (j in 1:length(dataTPAcontin)) {
   print(j)
 }
 
-warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
-#les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
+warnings() 
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(percentpvalue) #chi.test
 row.names(Resultschitest)<-names(dataNTcontin)
 Resultschitest
@@ -1085,11 +1067,11 @@ names(FTESTpercent)[c(15,16)]<-rownames(ResultsFtest)
 
 
 
-########tests par modalité Order##################
+########tests per modality Order##################
 dataPA<-ddply(alldatabase[[y]], c("Order", namecolumn[y]), summarise, nb=sum(nb))
-dataTPA<-subset(dataPA, dataPA[,2]==1) #juste les threatened
+dataTPA<-subset(dataPA, dataPA[,2]==1) #threatened
 class(dataTPA$nb)<-"integer"
-dataNTPA<-subset(dataPA, dataPA[,2]==0) #juste les threatened
+dataNTPA<-subset(dataPA, dataPA[,2]==0) #non-threatened
 
 
 
@@ -1119,17 +1101,17 @@ dataNTPA2<-cbind(dataNTPA, b)
 dataNTPA2
 
 
-#faire les tableau de ingence pour T
+#Contingence table
 dataTPA2<-dataTPA[, c(1,3)]
 dataTPAin2 <- data.frame(t(dataTPA2[-1]))
 colnames(dataTPAin2) <- dataTPA2[, 1]
-val <- colnames(dataTPAin2)#######le mettre ? la bonne place
+val <- colnames(dataTPAin2)
 dataTPAin <- dataTPAin2[,order(val)]
 
 dataNTPA2<-dataNTPA2[, c(1,3)]
 dataNTPAcontin2 <- data.frame(t(dataNTPA2[-1]))
 colnames(dataNTPAcontin2) <- dataNTPA2[, 1]
-Nval <- colnames(dataNTPAcontin2)#######le mettre ? la bonne place
+Nval <- colnames(dataNTPAcontin2)
 dataNTPAcontin <- dataNTPAcontin2[,order(val)]
 
 
@@ -1139,8 +1121,8 @@ ALLpvaluesPA<-list()
 ALLpvaluesPA2<-list()
 
 for (j in 1:length(dataTPAin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAin[,j], (sum(dataTPAin)-dataTPAin[,j]))
   
   dataNTcontin <- dataNTPAcontin
@@ -1160,7 +1142,7 @@ for (j in 1:length(dataTPAin)) {
 }
 
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(ALLpvaluesPA) #chi.test
 colnames(Resultschitest)<-names(dataNTPAcontin)
 Resultschitest
@@ -1184,8 +1166,8 @@ percentpvalue2<-c()
 
 
 for (j in 1:length(dataTPAin)) {
-  pvaluesPA<-c() #pour le test su chi2
-  pvaluesPA2<-c() #pour le test de fisher
+  pvaluesPA<-c() #for khi2 test
+  pvaluesPA2<-c() #for fisher test
   table<-cbind(dataTPAin[,j], (sum(dataTPAin)-dataTPAin[,j]))
   
   for (i in 1:length(alldatabasesample[[y]])){
@@ -1193,14 +1175,14 @@ for (j in 1:length(dataTPAin)) {
     dataNTin <- data.frame(t(dataNT[-1]))
     colnames(dataNTin) <- dataNT[, 1]
     
-    if (is.null(dataNTin$Characiformes)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+    if (is.null(dataNTin$Characiformes)==T){  #if no column, put a zero
       dataNTin$Characiformes=0
     }
     if (is.null(dataNTin$Cypriniformes)==T){
       dataNTin$Cypriniformes=0
     }
     
-    if (is.null(dataNTin$Cyprinodontiformes)==T){  #si jamais il manque des colonnes du fait qu'une modalité n'apparait pas ==> mettre un zéro
+    if (is.null(dataNTin$Cyprinodontiformes)==T){  ##if no column, put a zero
       dataNTin$Cyprinodontiformes=0
     }
     if (is.null(dataNTin$Other)==T){
@@ -1238,7 +1220,7 @@ for (j in 1:length(dataTPAin)) {
 warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
 #les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultschitest<-as.data.frame(percentpvalue) #chi.test
 row.names(Resultschitest)<-names(dataNTin)
 Resultschitest
@@ -1352,7 +1334,7 @@ percentpvalue<-c(percentpvalue, sum(ALLpvaluesPA< 0.05)/length(alldatabasesample
 
 warnings() 
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultswilcox<-as.data.frame(percentpvalue) #chi.test
 Resultswilcox
 WTESTpercent[y, c(1)]<-c(Resultswilcox)
@@ -1402,7 +1384,7 @@ percentpvalue<-c(percentpvalue, sum(ALLpvaluesPA< 0.05)/length(alldatabasesample
 warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
 #les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultswilcox<-as.data.frame(percentpvalue) #chi.test
 Resultswilcox
 WTESTpercent[y, c(2)]<-c(Resultswilcox)
@@ -1453,7 +1435,7 @@ percentpvalue<-c(percentpvalue, sum(ALLpvaluesPA< 0.05)/length(alldatabasesample
 warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
 #les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultswilcox<-as.data.frame(percentpvalue) #chi.test
 Resultswilcox
 WTESTpercent[y, c(3)]<-c(Resultswilcox)
@@ -1499,7 +1481,7 @@ percentpvalue<-c(percentpvalue, sum(ALLpvaluesPA< 0.05)/length(alldatabasesample
 warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
 #les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultswilcox<-as.data.frame(percentpvalue) #chi.test
 Resultswilcox
 WTESTpercent[y, c(4)]<-c(Resultswilcox)
@@ -1544,7 +1526,7 @@ percentpvalue<-c(percentpvalue, sum(ALLpvaluesPA< 0.05)/length(alldatabasesample
 warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
 #les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultswilcox<-as.data.frame(percentpvalue) #chi.test
 Resultswilcox
 WTESTpercent[y, c(5)]<-c(Resultswilcox)
@@ -1597,7 +1579,7 @@ percentpvalue<-c(percentpvalue, sum(ALLpvaluesPA< 0.05)/length(alldatabasesample
 warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
 #les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
 
-#Pourcentage de test positifs pour chaque modalit?s
+#Percentage of positive tests per modality
 Resultswilcox<-as.data.frame(percentpvalue) #chi.test
 Resultswilcox
 WTESTpercent[y, c(6)]<-c(Resultswilcox)
