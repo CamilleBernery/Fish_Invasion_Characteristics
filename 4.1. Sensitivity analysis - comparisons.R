@@ -93,12 +93,12 @@ nonadata<-cbind(no.na.data, nb)
 alldatabase[[1]]<-nonadata
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntro<-subset(nonadata, Introduced==0)
 AllNotIntro[[1]]<-NotIntro
 Intro<-subset(nonadata, Introduced==1)
 AllIntro[[1]]<-Intro
-nb2<-rep(1, length(NotIntro[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntro[,1])) 
 NotIntro1<-cbind(NotIntro, nb2)
 listofNotIntro <-replicate(999, NotIntro1 %>% sample_n(length(Intro[,1])), simplify=F)
 
@@ -125,12 +125,12 @@ nonadataaqua<-cbind(no.na.data.aqua, nb)
 alldatabase[[2]]<-nonadataaqua
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntroaqua<-subset(nonadataaqua, Aquaculture==0)
 Introaqua<-subset(nonadataaqua, Aquaculture==1)
 AllNotIntro[[2]]<-NotIntroaqua
 AllIntro[[2]]<-Introaqua
-nb2<-rep(1, length(NotIntroaqua[,1])) #pour pouvoir faire le tableau de aquaingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntroaqua[,1])) 
 NotIntro1aqua<-cbind(NotIntroaqua, nb2)
 listofNotIntroaqua <-replicate(999, NotIntro1aqua %>% sample_n(length(Introaqua[,1])), simplify=F)
 
@@ -157,12 +157,12 @@ nonadatacont<-cbind(no.na.data.cont, nb)
 alldatabase[[3]]<-nonadatacont
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntrocont<-subset(nonadatacont, Species.control==0)
 Introcont<-subset(nonadatacont, Species.control==1)
 AllNotIntro[[3]]<-NotIntrocont
 AllIntro[[3]]<-Introcont
-nb2<-rep(1, length(NotIntrocont[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntrocont[,1])) 
 NotIntro1cont<-cbind(NotIntrocont, nb2)
 listofNotIntrocont <-replicate(999, NotIntro1cont %>% sample_n(length(Introcont[,1])), simplify=F)
 
@@ -197,13 +197,13 @@ alldatabase[[4]]<-nonadataorna
 
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntroorna<-subset(nonadataorna, ornamental==0)
 Introorna<-subset(nonadataorna, ornamental==1)
 AllNotIntro[[4]]<-NotIntroorna
 AllIntro[[4]]<-Introorna
 
-nb2<-rep(1, length(NotIntroorna[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntroorna[,1])) 
 NotIntro1orna<-cbind(NotIntroorna, nb2)
 listofNotIntroorna <-replicate(999, NotIntro1orna %>% sample_n(length(Introorna[,1])), simplify=F)
 alldatabasesample[[4]]<-listofNotIntroorna
@@ -211,8 +211,6 @@ alldatabasesample[[4]]<-listofNotIntroorna
 
 
 #####FISHERIES________________________________________________________###
-
-
 INTRO$fisheries<-as.factor(INTRO$fisheries)
 levels(INTRO$fisheries)[levels(INTRO$fisheries)=="Yes"]<-1
 levels(INTRO$fisheries)[levels(INTRO$fisheries)=="No"]<-0
@@ -231,12 +229,12 @@ nonadatafish<-cbind(no.na.data.fish, nb)
 alldatabase[[5]]<-nonadatafish
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntrofish<-subset(nonadatafish, fisheries==0)
 Introfish<-subset(nonadatafish, fisheries==1)
 AllNotIntro[[5]]<-NotIntrofish
 AllIntro[[5]]<-Introfish
-nb2<-rep(1, length(NotIntrofish[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntrofish[,1])) 
 NotIntro1fish<-cbind(NotIntrofish, nb2)
 listofNotIntrofish <-replicate(999, NotIntro1fish %>% sample_n(length(Introfish[,1])), simplify=F)
 alldatabasesample[[5]]<-listofNotIntrofish
@@ -262,12 +260,12 @@ nonadataacci<-cbind(no.na.data.acci, nb)
 alldatabase[[6]]<-nonadataacci
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntroacci<-subset(nonadataacci, Accidental==0)
 Introacci<-subset(nonadataacci, Accidental==1)
 AllNotIntro[[6]]<-NotIntroacci
 AllIntro[[6]]<-Introacci
-nb2<-rep(1, length(NotIntroacci[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntroacci[,1])) 
 NotIntro1acci<-cbind(NotIntroacci, nb2)
 listofNotIntroacci <-replicate(999, NotIntro1acci %>% sample_n(length(Introacci[,1])), simplify=F)
 alldatabasesample[[6]]<-listofNotIntroacci
@@ -293,12 +291,12 @@ nonadataspor<-cbind(no.na.data.spor, nb)
 alldatabase[[7]]<-nonadataspor
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntrospor<-subset(nonadataspor, Sport.Angling==0)
 Introspor<-subset(nonadataspor, Sport.Angling==1)
 AllNotIntro[[7]]<-NotIntrospor
 AllIntro[[7]]<-Introspor
-nb2<-rep(1, length(NotIntrospor[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntrospor[,1])) 
 NotIntro1spor<-cbind(NotIntrospor, nb2)
 listofNotIntrospor <-replicate(999, NotIntro1spor %>% sample_n(length(Introspor[,1])), simplify=F)
 alldatabasesample[[7]]<-listofNotIntrospor
@@ -325,12 +323,12 @@ nonadatadiff<-cbind(no.na.data.diff, nb)
 alldatabase[[8]]<-nonadatadiff
 
 #999 samples
-set.seed(123) #pour avoir toujours le même aléatoire
+set.seed(123) 
 NotIntrodiff<-subset(nonadatadiff, Diffusion==0)
 Introdiff<-subset(nonadatadiff, Diffusion==1)
 AllNotIntro[[8]]<-NotIntrodiff
 AllIntro[[8]]<-Introdiff
-nb2<-rep(1, length(NotIntrodiff[,1])) #pour pouvoir faire le tableau de contingence des NT (non threatened) après
+nb2<-rep(1, length(NotIntrodiff[,1])) 
 NotIntro1diff<-cbind(NotIntrodiff, nb2)
 listofNotIntrodiff <-replicate(999, NotIntro1diff %>% sample_n(length(Introdiff[,1])), simplify=F)
 alldatabasesample[[8]]<-listofNotIntrodiff
@@ -422,7 +420,7 @@ for (y in 1:length(alldatabase)){
   dataNTPA2
   
   
-  #faire les tableau de ingence pour T
+  #contingence table
   dataTPA2<-dataTPA[, c(1,3)]
   dataTPAin2 <- data.frame(t(dataTPA2[-1]))
   colnames(dataTPAin2) <- dataTPA2[, 1]
@@ -442,8 +440,8 @@ for (y in 1:length(alldatabase)){
   ALLpvaluesPA2<-list()
   
   for (j in 1:length(dataTPAin)) {
-    pvaluesPA<-c() #pour le test su chi2
-    pvaluesPA2<-c() #pour le test de fisher
+    pvaluesPA<-c() # chi2
+    pvaluesPA2<-c() #for fisher test
     table<-cbind(dataTPAin[,j], (sum(dataTPAin)-dataTPAin[,j]))
     
     dataNTcontin <- dataNTPAcontin
@@ -463,7 +461,7 @@ for (y in 1:length(alldatabase)){
   }
   
   
-  #Pourcentage de test positifs pour chaque modalit?s
+  #percentage of positve tests for each modality
   Resultschitest<-as.data.frame(ALLpvaluesPA) #chi.test
   colnames(Resultschitest)<-names(dataNTPAcontin)
   Resultschitest
@@ -486,8 +484,8 @@ for (y in 1:length(alldatabase)){
   
   
   for (j in 1:length(dataTPAin)) {
-    pvaluesPA<-c() #pour le test su chi2
-    pvaluesPA2<-c() #pour le test de fisher
+    pvaluesPA<-c() # chi2
+    pvaluesPA2<-c() #for fisher test
     table<-cbind(dataTPAin[,j], (sum(dataTPAin)-dataTPAin[,j]))
     
     for (i in 1:length(alldatabasesample[[y]])){
@@ -534,10 +532,9 @@ for (y in 1:length(alldatabase)){
     print(j)
   }
   
-  warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
-  #les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
+  warnings() 
   
-  #Pourcentage de test positifs pour chaque modalit?s
+  #percentage of positve tests for each modality
   Resultschitest<-as.data.frame(percentpvalue) #chi.test
   row.names(Resultschitest)<-names(dataNTin)
   Resultschitest
@@ -593,7 +590,7 @@ for (y in 1:length(alldatabase)){
   
   
   
-  #faire les tableau de contingence pour T
+  #contingence table
   dataTPA2<-dataTPA[, c(1,3)]
   dataTPAcontin2 <- data.frame(t(dataTPA2[-1]))
   colnames(dataTPAcontin2) <- dataTPA2[, 1]
@@ -623,8 +620,8 @@ for (y in 1:length(alldatabase)){
   ALLpvaluesPA2<-list()
   
   for (j in 1:length(dataTPAcontin)) {
-    pvaluesPA<-c() #pour le test su chi2
-    pvaluesPA2<-c() #pour le test de fisher
+    pvaluesPA<-c() # chi2
+    pvaluesPA2<-c() #for fisher test
     table<-cbind(dataTPAcontin[,j], (sum(dataTPAcontin)-dataTPAcontin[,j]))
     
     dataNTcontin <- dataNTPAcontin
@@ -644,7 +641,7 @@ for (y in 1:length(alldatabase)){
   }
   
   
-  #Pourcentage de test positifs pour chaque modalit?s
+  #percentage of positve tests for each modality
   Resultschitest<-as.data.frame(ALLpvaluesPA) #chi.test
   colnames(Resultschitest)<-names(dataNTPAcontin)
   Resultschitest
@@ -671,12 +668,6 @@ for (y in 1:length(alldatabase)){
   
   
   
-  
-  
-  
-  ##pour chaque ?chantillon, tableau de contingence puis test de chi2
-  #Dans certaines cat?giries on a des 0 parfois : emp?che de faire un chi2!! ==> test exact de fisher ? la place?
-  
   ALLpvaluesPA<-list()
   ALLpvaluesPA2<-list()
   percentpvalue<-c()
@@ -684,8 +675,8 @@ for (y in 1:length(alldatabase)){
   
   
   for (j in 1:length(dataTPAcontin)) {
-    pvaluesPA<-c() #pour le test su chi2
-    pvaluesPA2<-c() #pour le test de fisher
+    pvaluesPA<-c() # chi2
+    pvaluesPA2<-c() #for fisher test
     table<-cbind(dataTPAcontin[,j], (sum(dataTPAcontin)-dataTPAcontin[,j]))
     
     for (i in 1:length(alldatabasesample[[y]])){
@@ -737,10 +728,9 @@ for (y in 1:length(alldatabase)){
     print(j)
   }
   
-  warnings() ##Est ce que les chi.test ont ?t? correctement ex?cut?s, si non (= NA ou valeur approximative du chi) , on garde les r?sultats des tests de fisher
-  #les r?sultats du chi.test et du test de fisher sont sensiblement les m?mes, m?me lorsque le chi.test est approximatif
+  warnings() 
   
-  #Pourcentage de test positifs pour chaque modalit?s
+  #percentage of positve tests for each modality
   Resultschitest<-as.data.frame(percentpvalue) #chi.test
   row.names(Resultschitest)<-names(dataNTcontin)
   Resultschitest
